@@ -13,3 +13,76 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  color: white;
+}
+
+.main-container {
+  height: 100vh;
+}
+
+.main-container, .user-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-container {
+  margin-bottom: 2rem;
+}
+
+li {
+  list-style: upper-roman;
+  font-size: x-large;
+  font-style: italic;
+}
+
+.boton-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;  
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.error {
+  color: white;
+  padding: 2rem;
+  border: 1px solid red;
+  width: 50%;
+  background-color: red;
+}
+
+.title {
+  border-bottom: 2px solid green;
+  padding: 2rem;
+  background-color: green;
+  width: 50%;
+}
+
+.error-boundary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

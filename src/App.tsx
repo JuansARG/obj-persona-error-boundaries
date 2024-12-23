@@ -1,11 +1,12 @@
 import "./App.css";
+import ErrorBoundary from "./components/ErrorBoundaries";
+import { Layaout } from "./components/Layaout";
 
 function App() {
-
   return (
-    <div>
-      <h1>Obj personal: Error boundaries</h1>  
-    </div>
+    <ErrorBoundary>
+      <Layaout />
+    </ErrorBoundary>
   );
 }
 
