@@ -8,7 +8,9 @@ export const UserContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showUsers, setShowUsers] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [urlAPI, setUrlAPI] = useState<string>('https://jsonplaceholder.typicode.com/users');
+  const [urlAPI, setUrlAPI] = useState<string>(
+    "https://jsonplaceholder.typicode.com/users"
+  );
   const [urlRota, setUrlRota] = useState<boolean>(false);
 
   const getUsers = async () => {
@@ -16,8 +18,8 @@ export const UserContainer = () => {
 
     fetch(urlAPI)
       .then((response) => {
-        if(!response.ok) setError(true);
-        return response.json()
+        if (!response.ok) setError(true);
+        return response.json();
       })
       .catch(() => setError(true))
       .then((data) => {
@@ -39,16 +41,16 @@ export const UserContainer = () => {
   const handleReiniciar = () => {
     setUsers(undefined);
     setShowUsers(false);
-    setUrlAPI('https://jsonplaceholder.typicode.com/users');
+    setUrlAPI("https://jsonplaceholder.typicode.com/users");
     setUrlRota(false);
   };
 
   const handleRomperURL = () => {
-    setUrlAPI('https://jsonplaceholder.typicode.XXX/users');
+    setUrlAPI("https://jsonplaceholder.typicode.XXX/users");
     setUrlRota(true);
-  }
+  };
 
-  if(error) throw new Error("Error al obtener los usuarios");
+  if (error) throw new Error("Error al obtener los usuarios");
 
   return (
     <>
@@ -69,7 +71,9 @@ export const UserContainer = () => {
             : "Mostrar lista vacia (ROMPER)"}
         </CustomButton>
         <CustomButton onClick={handleGetUsers}>Obtener usuarios</CustomButton>
-        <CustomButton onClick={handleRomperURL} disabled={urlRota}>Modificar URL(ROMPER)</CustomButton>
+        <CustomButton onClick={handleRomperURL} disabled={urlRota}>
+          Modificar URL(ROMPER)
+        </CustomButton>
         <CustomButton onClick={handleReiniciar}>Reiniciar</CustomButton>
       </div>
     </>
