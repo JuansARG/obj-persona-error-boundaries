@@ -41,5 +41,6 @@ Una vez renderizado el componente que se devuelve cuando tenemos un error podrem
 
 ## Ventajas de manejar los errores
 
-  1. Mas amigable de cara al usuario de la app, es decir no es lo mismo tener una call stack que tener un mensaje ameno indicandote los pasos a seguir en caso de no funcionar segun lo esperado
+  1. Mas amigable de cara al usuario de la app, es decir no es lo mismo tener una call stack que tener un mensaje ameno indicandote los pasos a seguir en caso de no funcionar segun lo esperado, incluso podriamos hacer registro de estos eventos que involucran errores
   2. Podemos registrar los errores desde esta capa de forma global
+  3. Podemos utilizarlo por funcionalidades de modo que no bloquee el uso del resto de la aplicacion
