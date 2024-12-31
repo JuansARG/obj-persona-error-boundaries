@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Implementacion rapida y sencila sobre como manjear errores inesperados en tu proyecto React con un Class Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Primero instalamos dependencias y corremos el proyecto en local
 
-Currently, two official plugins are available:
+- npm run install
+- npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Modo de uso
 
-## Expanding the ESLint configuration
+Luego de instalar y correr esta demo vamos a poder visualizar 4 botones
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Mostrar lista vacia (ROMPER) / Mostrar lista vacia
+- Obtener usuarios
+- Modificar URL (ROMPER)
+- Reiniciar
 
-- Configure the top-level `parserOptions` property like this:
+### Mostrar lista vacia
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Este boton nos va a servir para renderizar una lista, en terminos tecnicos vamos a mapear un array en la medida que el valor exista para renderizar un elemento li por cada item
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Obtener usuarios
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Este boton nos va a servir para hacer el fetching a una API publica para obtener los usuarios y luego poder renderizar la lista antes mencionada
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Modificar
+
+Este boton nos va a servir para modificar la URL a la que vamos a apuntar para obtener los usuarios, modificacion que va a ocasionar un error
+
+### Reiniciar
+
+Por ultimo tenemos el boton reiniciar que como su nombre lo indica va a reiniciar todo el estado de la aplicacion, la URL y el array que contiene a los usuarios anteriormente obtenidos
+
+### A ROMPER
+
+Para poder ver el manejador de errores en accion podemos hacer lo siguiente:
+
+  1. Renderizar la lista vacia
+  2. Romper la url para que haga una peticion y falle
+
+Una vez renderizado el componente que se devuelve cuando tenemos un error podremos reiniciar el estado de la aplicación para comenzar de nuevo
+
+## Ventajas de manejar los errores
+
+  1. Mas amigable de cara al usuario de la app, es decir no es lo mismo tener una call stack que tener un mensaje ameno indicandote los pasos a seguir en caso de no funcionar segun lo esperado
+  2. Podemos registrar los errores desde esta capa de forma global
