@@ -1,13 +1,13 @@
 import { useState } from "react";
-import type { User } from "../types";
+import type { CustomError, User } from "../types";
 import { UserList } from "./UserList";
 import { CustomButton } from "./CustomButton";
 
 export const UserContainer = () => {
-  const [users, setUsers] = useState<User[] | undefined>(undefined);
+  const [users, setUsers] = useState<User[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [showUsers, setShowUsers] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
   const [urlAPI, setUrlAPI] = useState<string>(
     "https://jsonplaceholder.typicode.com/users"
   );
@@ -18,12 +18,18 @@ export const UserContainer = () => {
 
     fetch(urlAPI)
       .then((response) => {
-        if (!response.ok) setError(true);
+        if (!response.ok) {
+          throw new Error();
+        }
         return response.json();
       })
-      .catch(() => setError(true))
       .then((data) => {
         setUsers(data.map((user: User) => user));
+      })
+      .catch((error: CustomError) => {
+        error.message = "Ops! Algo salio mal durante el fetching!🫠";
+        error.wasModified = true;
+        setError(error);
       })
       .finally(() => {
         setLoading(false);
@@ -39,7 +45,7 @@ export const UserContainer = () => {
   };
 
   const handleReiniciar = () => {
-    setUsers(undefined);
+    setUsers(null);
     setShowUsers(false);
     setUrlAPI("https://jsonplaceholder.typicode.com/users");
     setUrlRota(false);
@@ -50,7 +56,10 @@ export const UserContainer = () => {
     setUrlRota(true);
   };
 
-  if (error) throw new Error("Error al obtener los usuarios");
+  if (error) {
+    console.log(error);
+    throw error;
+  }
 
   return (
     <>

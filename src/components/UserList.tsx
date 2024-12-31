@@ -1,7 +1,7 @@
 import type { User } from "../types";
 
 interface UserListProps {
-  userList: User[] | undefined;
+  userList: User[] | null;
 }
 
 export const UserList = ({ userList }: UserListProps) => {
